@@ -1,0 +1,28 @@
+.header {
+	background-color: #1c2b35;
+	height: 4vw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 6vw;
+
+	& img.logo {
+		width: 7vw;
+	}
+
+	& .links {
+		width: 21vw;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		& a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 1vw;
+			&:hover {
+				color: #ff9900;
+			}
+		}
+	}
+}
