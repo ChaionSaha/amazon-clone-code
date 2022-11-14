@@ -24,7 +24,7 @@
 		"eject": "react-scripts eject",
 		"sass": "sass --watch ./src/App.scss ./src/App.css --no-source-map",
 		"predeploy": "yarn run build",
-		"deploy": "gh-pages -d build"
+		"deploy": "gh-pages -b main -d build"
 	},
 	"eslintConfig": {
 		"extends": [
