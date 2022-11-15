@@ -12,17 +12,7 @@ $order-bgcolor: rgba(255, 153, 0, 0.3);
 	padding: 1vw;
 }
 
-.orders {
+.cart-container {
 	min-width: 13.2vw;
-	border: 1px solid black;
 	background-color: $order-bgcolor;
-	padding: 1.15vw;
-	border: none;
-
-	& h3 {
-		text-align: center;
-		margin-bottom: 2.5vw;
-		font-size: 1.25vw;
-		font-weight: 500;
-	}
 }

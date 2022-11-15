@@ -4,8 +4,7 @@ import "./Product.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const Product = (props) => {
-	const { product, addToCartClick } = props;
+const Product = ({ product, addToCartClick }) => {
 	const { img, name, price, ratings, seller } = product;
 	return (
 		<div className="product">
