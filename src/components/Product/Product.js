@@ -1,8 +1,7 @@
 import React from "react";
 import "./Product.scss";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { ShoppingCartOutline } from "heroicons-react/build";
 
 const Product = ({ product, addToCartClick }) => {
 	const { img, name, price, ratings, seller } = product;
@@ -17,7 +16,7 @@ const Product = ({ product, addToCartClick }) => {
 			</div>
 			<button onClick={() => addToCartClick(product)}>
 				<p>Add To Cart</p>
-				<FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+				<ShoppingCartOutline className="shopping-cart"></ShoppingCartOutline>
 			</button>
 		</div>
 	);

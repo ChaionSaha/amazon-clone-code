@@ -60,6 +60,7 @@ $btn-bg: #ffe0b3;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		//color: azure;
 
 		& p {
 			margin-right: 0.3vw;
@@ -67,6 +68,10 @@ $btn-bg: #ffe0b3;
 
 		&:hover {
 			background-color: darken($btn-bg, 25%);
+		}
+
+		& .shopping-cart {
+			width: 1.1vw;
 		}
 	}
 }

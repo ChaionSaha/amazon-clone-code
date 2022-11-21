@@ -2,13 +2,25 @@
 	width: 100%;
 	border: 1px solid black;
 
-	padding: 1.15vw;
 	border: none;
+	position: sticky;
+	top: 0;
 
 	& h3 {
 		text-align: center;
 		margin-bottom: 2.5vw;
 		font-size: 1.25vw;
 		font-weight: 500;
+	}
+
+	&-summary {
+		*:not(:last-of-type) {
+			margin-bottom: 1.25vw;
+		}
+
+		*:last-of-type {
+			font-size: 1vw;
+			font-weight: 500;
+		}
 	}
 }

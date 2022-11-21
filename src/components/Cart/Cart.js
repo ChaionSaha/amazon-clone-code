@@ -2,11 +2,33 @@ import React from "react";
 import "./Cart.scss";
 
 const Cart = ({ cart }) => {
+	let total = 0,
+		shippingCost = 0,
+		quantity = 0;
+	for (const product of cart) {
+		quantity += product.quantity;
+		total += product.price;
+		shippingCost += product.shipping;
+	}
+
+	const tax = parseFloat((total * 0.1).toFixed(2));
+
+	let storedCart = {};
+	if (localStorage.getItem("storedCart")) {
+		storedCart = JSON.parse(localStorage.getItem("storedCart"));
+	}
+
 	return (
 		<div className="orders">
 			<h3>Order Summary</h3>
-			<div className="order-summary">
-				<p>Total Selected Items: {cart.length}</p>
+			<div className="orders-summary">
+				<p>Selected Items: {quantity}</p>
+				<p>Total Price: ${total} </p>
+				<p>Total Shipping Charge: ${shippingCost} </p>
+				<p>Tax: ${tax} </p>
+				<p className="grand-total">
+					Grand Total: ${total + shippingCost + tax}
+				</p>
 			</div>
 		</div>
 	);
