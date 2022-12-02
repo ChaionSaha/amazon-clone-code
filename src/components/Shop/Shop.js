@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Cart from "../Cart/Cart";
-import { addToDB, findItem, getCart } from "../Localstorage/Localstorage";
-
-import Product from "../Product/Product";
-import "./Shop.scss";
+import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
+import { addToDB, findItem, getCart } from '../Localstorage/Localstorage';
+import Product from '../Product/Product';
+import './Shop.scss';
 
 const Shop = () => {
 	// Fetching Products information
 	const [products, setProducts] = useState([]);
 	useEffect(() => {
 		fetch(
-			"https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
+			'https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json'
 		)
 			.then((res) => res.json())
 			.then((product) => setProducts(product));
@@ -52,8 +51,8 @@ const Shop = () => {
 	}, [products]);
 
 	return (
-		<div className="shop">
-			<div className="products">
+		<div className='shop'>
+			<div className='products'>
 				{products.map((product) => (
 					<Product
 						key={product.id}
@@ -63,7 +62,7 @@ const Shop = () => {
 				))}
 			</div>
 
-			<div className="cart-container">
+			<div className='cart-container'>
 				<Cart cart={cart}></Cart>
 			</div>
 		</div>
