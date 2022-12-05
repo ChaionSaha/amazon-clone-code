@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Cart from '../Cart/Cart';
-import { addToDB, findItem, getCart } from '../Localstorage/Localstorage';
+import { addToDB, getCart } from '../Localstorage/Localstorage';
 import Product from '../Product/Product';
 import './Shop.scss';
+import useProducts from './../hooks/useProducts';
+import useCart from '../hooks/useCart';
 
 const Shop = () => {
 	// Fetching Products information
-	const [products, setProducts] = useState([]);
-	useEffect(() => {
-		fetch(
-			'https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json'
-		)
-			.then((res) => res.json())
-			.then((product) => setProducts(product));
-	}, []);
+	const [products, setProducts] = useProducts();
+	const [cart, setCart] = useCart(products);
 
 	// Cart Information Update
-	const [cart, setCart] = useState([]);
 	const addToCartClick = (product) => {
 		const exists = cart.find((cartItem) => cartItem.id === product.id);
 		let newCart = [];
@@ -32,23 +27,6 @@ const Shop = () => {
 		setCart(newCart);
 		addToDB(product.id);
 	};
-
-	useEffect(() => {
-		const storedCart = getCart();
-		let savedCart = [];
-
-		for (const id in storedCart) {
-			const foundProduct = products.find((product) => {
-				return id === product.id;
-			});
-
-			if (foundProduct) {
-				foundProduct.quantity = storedCart[id];
-				savedCart.push(foundProduct);
-			}
-		}
-		setCart(savedCart);
-	}, [products]);
 
 	return (
 		<div className='shop'>

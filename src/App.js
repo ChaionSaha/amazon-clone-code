@@ -13,10 +13,11 @@ function App() {
 			<Header></Header>
 			<Routes>
 				<Route path='/' element={<Shop></Shop>}></Route>
-				<Route path='shop' element={<Shop></Shop>}></Route>
-				<Route path='order' element={<Order />}></Route>
-				<Route path='inventory' element={<Inventory />}></Route>
-				<Route path='login' element={<Login />}></Route>
+				<Route path='/amazone-clone' element={<Shop></Shop>}></Route>
+				<Route path='/shop' element={<Shop></Shop>}></Route>
+				<Route path='/order' element={<Order />}></Route>
+				<Route path='/inventory' element={<Inventory />}></Route>
+				<Route path='/login' element={<Login />}></Route>
 				<Route path='*' element={<NotFound />}></Route>
 			</Routes>
 		</div>
