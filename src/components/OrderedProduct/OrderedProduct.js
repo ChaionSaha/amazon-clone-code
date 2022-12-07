@@ -2,8 +2,9 @@ import React from 'react';
 import './OrderedProduct.scss';
 import { TrashOutline } from 'heroicons-react';
 
-const OrderedProduct = ({ product }) => {
+const OrderedProduct = ({ product, removeItem }) => {
 	const { name, img, quantity, price, shipping } = product;
+
 	return (
 		<div className='ordered-product'>
 			<img src={img} />
@@ -24,7 +25,9 @@ const OrderedProduct = ({ product }) => {
 				</p>
 			</div>
 			<div className='remove-icon'>
-				<TrashOutline></TrashOutline>
+				<TrashOutline
+					onClick={() => removeItem(product.id)}
+				></TrashOutline>
 			</div>
 		</div>
 	);

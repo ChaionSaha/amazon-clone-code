@@ -5,6 +5,7 @@ import useCart from './../hooks/useCart';
 import OrderedProduct from '../OrderedProduct/OrderedProduct';
 import useCartCalculation from './../hooks/useCartCalculation';
 import { CreditCardOutline, TrashOutline } from 'heroicons-react';
+import { removeFromDb } from '../Localstorage/Localstorage';
 
 const Order = () => {
 	const [products, setProducts] = useProducts();
@@ -16,6 +17,16 @@ const Order = () => {
 		localStorage.removeItem('storedCart');
 		setCart([]);
 	};
+	const removeItem = (id) => {
+		let newCart = [...cart];
+		let index = newCart.findIndex((p) => {
+			return p.id === id;
+		});
+		console.log(id);
+		newCart.splice(index, 1);
+		setCart(newCart);
+		removeFromDb(id);
+	};
 
 	return (
 		<div className='review'>
@@ -25,6 +36,7 @@ const Order = () => {
 						<OrderedProduct
 							key={product.id}
 							product={product}
+							removeItem={removeItem}
 						></OrderedProduct>
 					);
 				})}
@@ -55,7 +67,7 @@ const Order = () => {
 						Clear Cart
 						<TrashOutline className='btns-icon'></TrashOutline>
 					</button>
-					<button className=' chk-out'>
+					<button className='chk-out'>
 						Proceed Checkout
 						<CreditCardOutline className='btns-icon'></CreditCardOutline>
 					</button>

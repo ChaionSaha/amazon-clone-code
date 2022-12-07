@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, redirect, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Shop from './components/Shop/Shop';
 import Order from './components/Order/Order';
@@ -13,12 +13,12 @@ function App() {
 			<Header></Header>
 			<Routes>
 				<Route path='/' element={<Shop></Shop>}></Route>
-				<Route path='/amazone-clone' element={<Shop></Shop>}></Route>
+				<Route path='amazon-clone' element={<Shop></Shop>}></Route>
 				<Route path='/shop' element={<Shop></Shop>}></Route>
 				<Route path='/order' element={<Order />}></Route>
 				<Route path='/inventory' element={<Inventory />}></Route>
 				<Route path='/login' element={<Login />}></Route>
-				<Route path='*' element={<NotFound />}></Route>
+				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
 		</div>
 	);
