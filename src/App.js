@@ -12,13 +12,41 @@ function App() {
 		<div className='body'>
 			<Header></Header>
 			<Routes>
-				<Route path='/' element={<Shop></Shop>}></Route>
-				<Route path='amazon-clone' element={<Shop></Shop>}></Route>
-				<Route path='/shop' element={<Shop></Shop>}></Route>
-				<Route path='/order' element={<Order />}></Route>
-				<Route path='/inventory' element={<Inventory />}></Route>
-				<Route path='/login' element={<Login />}></Route>
-				<Route path='*' element={<NotFound></NotFound>}></Route>
+				<Route
+					exact
+					path='amazon-clone/'
+					element={<Shop></Shop>}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone'
+					element={<Shop></Shop>}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone/shop'
+					element={<Shop></Shop>}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone/order'
+					element={<Order />}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone/inventory'
+					element={<Inventory />}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone/login'
+					element={<Login />}
+				></Route>
+				<Route
+					exact
+					path='amazon-clone/*'
+					element={<NotFound></NotFound>}
+				></Route>
 			</Routes>
 		</div>
 	);

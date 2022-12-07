@@ -12,7 +12,7 @@ const Header = () => {
 			<img src={logo} alt='Logo' className='logo' />
 			<div className='links'>
 				<NavLink
-					to='/shop'
+					to='amazon-clone/shop'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
@@ -20,7 +20,7 @@ const Header = () => {
 					Shop
 				</NavLink>
 				<NavLink
-					to='/order'
+					to='amazon-clone/order'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
@@ -28,7 +28,7 @@ const Header = () => {
 					Order
 				</NavLink>
 				<NavLink
-					to='/inventory'
+					to='amazon-clone/inventory'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
@@ -36,7 +36,7 @@ const Header = () => {
 					Inventory
 				</NavLink>
 				<NavLink
-					to='/login'
+					to='amazon-clone/login'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
