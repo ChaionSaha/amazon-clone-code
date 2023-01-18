@@ -1,7 +1,13 @@
+import { TrashOutline } from 'heroicons-react';
 import React from 'react';
 import './Cart.scss';
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, setCart }) => {
+	const clearCart = () => {
+		localStorage.removeItem('storedCart');
+		setCart([]);
+	};
+
 	let total = 0,
 		shippingCost = 0,
 		quantity = 0;
@@ -25,6 +31,12 @@ const Cart = ({ cart }) => {
 					Grand Total: ${total + shippingCost + tax}
 				</p>
 			</div>
+			{cart.length != 0 && (
+				<button className='clear' onClick={clearCart}>
+					Clear Cart
+					<TrashOutline className='btns-icon'></TrashOutline>
+				</button>
+			)}
 		</div>
 	);
 };

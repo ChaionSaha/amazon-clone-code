@@ -1,9 +1,17 @@
 import React from 'react';
+import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/Logo.svg';
+import auth from './../../firebase.init';
 import './Header.scss';
 
 const Header = () => {
+	const [user] = useAuthState(auth);
+	const [signOut] = useSignOut(auth);
+	const handleSignOut = () => {
+		signOut();
+	};
+
 	let activeStyle = {
 		color: '#ff9900',
 	};
@@ -12,7 +20,7 @@ const Header = () => {
 			<img src={logo} alt='Logo' className='logo' />
 			<div className='links'>
 				<NavLink
-					to='amazon-clone/shop'
+					to='/shop'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
@@ -20,7 +28,7 @@ const Header = () => {
 					Shop
 				</NavLink>
 				<NavLink
-					to='amazon-clone/order'
+					to='/order'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
@@ -28,21 +36,28 @@ const Header = () => {
 					Order
 				</NavLink>
 				<NavLink
-					to='amazon-clone/inventory'
+					to='/inventory'
 					style={({ isActive }) =>
 						isActive ? activeStyle : undefined
 					}
 				>
 					Inventory
 				</NavLink>
-				<NavLink
-					to='amazon-clone/login'
-					style={({ isActive }) =>
-						isActive ? activeStyle : undefined
-					}
-				>
-					Login
-				</NavLink>
+
+				{user ? (
+					<button className='signOut' onClick={handleSignOut}>
+						Sign Out
+					</button>
+				) : (
+					<NavLink
+						to='/login'
+						style={({ isActive }) =>
+							isActive ? activeStyle : undefined
+						}
+					>
+						Login
+					</NavLink>
+				)}
 			</div>
 		</nav>
 	);

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Cart from '../Cart/Cart';
-import { addToDB, getCart } from '../Localstorage/Localstorage';
+import { addToDB } from '../Localstorage/Localstorage';
 import Product from '../Product/Product';
-import './Shop.scss';
-import useProducts from './../hooks/useProducts';
 import useCart from '../hooks/useCart';
+import useProducts from './../hooks/useProducts';
+import './Shop.scss';
 
 const Shop = () => {
 	// Fetching Products information
@@ -41,7 +41,7 @@ const Shop = () => {
 			</div>
 
 			<div className='cart-container'>
-				<Cart cart={cart}></Cart>
+				<Cart cart={cart} setCart={setCart}></Cart>
 			</div>
 		</div>
 	);

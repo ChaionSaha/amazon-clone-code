@@ -9,20 +9,31 @@
 	top: 0;
 	z-index: 100;
 
-	& img.logo {
+	& > img.logo {
 		width: 7vw;
 	}
 
-	& .links {
+	& > .links {
 		width: 21vw;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 
-		& * {
-			color: #fff;
+		& > a {
 			text-decoration: none;
+			color: #fff;
 			font-size: 1vw;
+			&:hover {
+				color: #ff9900;
+			}
+		}
+
+		& > .signOut {
+			border: none;
+			background: transparent;
+			color: #fff;
+			font-size: 1vw;
+			cursor: pointer;
 			&:hover {
 				color: #ff9900;
 			}

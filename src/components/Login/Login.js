@@ -1,9 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {
+	useSignInWithEmailAndPassword,
+	useSignInWithGoogle,
+} from 'react-firebase-hooks/auth';
+import { NavLink, useNavigate } from 'react-router-dom';
+import googleLogo from '../../images/google.svg';
+import auth from './../../firebase.init';
+import './Login.scss';
 
 const Login = () => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const [signInWithEmailandPassword, user, loading, error] =
+		useSignInWithEmailAndPassword(auth);
+
+	const [googleSignIn, googleUser, googleLoading, googleError] =
+		useSignInWithGoogle(auth);
+
+	const navigate = useNavigate();
+
+	if (user || googleUser) navigate('/');
+
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+		signInWithEmailandPassword(email, password);
+	};
 	return (
-		<div>
-			<h1>This is login page</h1>
+		<div className='login'>
+			<h1>Login</h1>
+			<form onSubmit={handleFormSubmit}>
+				<div className='input-group'>
+					<label htmlFor='email'>Email</label>
+					<input
+						type='email'
+						name='email'
+						id='email'
+						required
+						onBlur={(e) => setEmail(e.target.value)}
+					/>
+				</div>
+				<div className='input-group'>
+					<label htmlFor='password'>Password</label>
+					<input
+						type='password'
+						name='password'
+						id='password'
+						onBlur={(e) => setPassword(e.target.value)}
+					/>
+				</div>
+				<p className='error' style={{ color: 'red' }}>
+					{error?.message || googleError?.message}
+				</p>
+				<button className='email-login'>
+					Login {loading && <div className='circle'></div>}
+				</button>
+			</form>
+			<p>
+				New to Ema-john?{' '}
+				<NavLink to='/signup'>Create New Account</NavLink>
+			</p>
+			<div className='or'>
+				<p>or</p>
+			</div>
+			<button className='google-login' onClick={() => googleSignIn()}>
+				<img src={googleLogo} alt='google logo' />
+				Continue with Google
+				{googleLoading && <div className='circle'></div>}
+			</button>
 		</div>
 	);
 };
