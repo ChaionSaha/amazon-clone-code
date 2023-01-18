@@ -1,17 +1,19 @@
+import { CreditCardOutline, TrashOutline } from 'heroicons-react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { removeFromDb } from '../Localstorage/Localstorage';
+import OrderedProduct from '../OrderedProduct/OrderedProduct';
+import useCart from './../hooks/useCart';
+import useCartCalculation from './../hooks/useCartCalculation';
 import useProducts from './../hooks/useProducts';
 import './Order.scss';
-import useCart from './../hooks/useCart';
-import OrderedProduct from '../OrderedProduct/OrderedProduct';
-import useCartCalculation from './../hooks/useCartCalculation';
-import { CreditCardOutline, TrashOutline } from 'heroicons-react';
-import { removeFromDb } from '../Localstorage/Localstorage';
 
 const Order = () => {
 	const [products, setProducts] = useProducts();
 	const [cart, setCart] = useCart(products);
 	const [total, shippingCost, quantity, tax, grandTotal] =
 		useCartCalculation(cart);
+	const navigate = useNavigate();
 
 	const clearCart = () => {
 		localStorage.removeItem('storedCart');
@@ -67,7 +69,10 @@ const Order = () => {
 						Clear Cart
 						<TrashOutline className='btns-icon'></TrashOutline>
 					</button>
-					<button className='chk-out'>
+					<button
+						className='chk-out'
+						onClick={() => navigate('/checkout')}
+					>
 						Proceed Checkout
 						<CreditCardOutline className='btns-icon'></CreditCardOutline>
 					</button>

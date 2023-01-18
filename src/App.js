@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.scss';
+import CheckOut from './components/CheckOut/CheckOut';
 import Header from './components/Header/Header';
 import Inventory from './components/Inventory/Inventory';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 import Order from './components/Order/Order';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Shop from './components/Shop/Shop';
 import SignUp from './components/SignUp/SignUp';
 
@@ -19,6 +21,14 @@ function App() {
 				<Route path='/inventory' element={<Inventory />}></Route>
 				<Route path='/login' element={<Login />}></Route>
 				<Route path='/signup' element={<SignUp />}></Route>
+				<Route
+					path='/checkout'
+					element={
+						<ProtectedRoute>
+							<CheckOut></CheckOut>
+						</ProtectedRoute>
+					}
+				></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
 		</div>

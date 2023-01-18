@@ -3,7 +3,7 @@ import {
 	useSignInWithEmailAndPassword,
 	useSignInWithGoogle,
 } from 'react-firebase-hooks/auth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import googleLogo from '../../images/google.svg';
 import auth from './../../firebase.init';
 import './Login.scss';
@@ -11,16 +11,17 @@ import './Login.scss';
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	let from = location.state?.from?.pathname || '/';
 
 	const [signInWithEmailandPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth);
-
 	const [googleSignIn, googleUser, googleLoading, googleError] =
 		useSignInWithGoogle(auth);
 
-	const navigate = useNavigate();
-
-	if (user || googleUser) navigate('/');
+	if (user || googleUser) navigate(from, { replace: true });
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
