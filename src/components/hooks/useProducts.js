@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const useProducts = () => {
 	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
-		fetch(
-			'https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json'
-		)
+		fetch('http://localhost:4000/products')
 			.then((res) => res.json())
 			.then((product) => setProducts(product));
 	}, []);

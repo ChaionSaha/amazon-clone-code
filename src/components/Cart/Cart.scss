@@ -7,6 +7,7 @@ $color-red: #ff3030;
 	border: none;
 	position: sticky;
 	top: 4.2vw;
+	left: 0;
 
 	display: flex;
 	flex-direction: column;
@@ -21,10 +22,11 @@ $color-red: #ff3030;
 	&-summary {
 		*:not(:last-of-type) {
 			margin-bottom: 1.25vw;
+			font-size: 1vw;
 		}
 
 		*:last-of-type {
-			font-size: 1vw;
+			font-size: 1.2vw;
 			font-weight: 500;
 		}
 	}

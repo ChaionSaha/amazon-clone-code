@@ -1,6 +1,6 @@
+import { TrashOutline } from 'heroicons-react';
 import React from 'react';
 import './OrderedProduct.scss';
-import { TrashOutline } from 'heroicons-react';
 
 const OrderedProduct = ({ product, removeItem }) => {
 	const { name, img, quantity, price, shipping } = product;
@@ -26,7 +26,7 @@ const OrderedProduct = ({ product, removeItem }) => {
 			</div>
 			<div className='remove-icon'>
 				<TrashOutline
-					onClick={() => removeItem(product.id)}
+					onClick={() => removeItem(product._id)}
 				></TrashOutline>
 			</div>
 		</div>

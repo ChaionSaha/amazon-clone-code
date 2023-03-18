@@ -1,25 +1,37 @@
-import { getCart } from '../Localstorage/Localstorage';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { getCart } from "../Localstorage/Localstorage";
 
-const useCart = (products) => {
+const useCart = () => {
 	const [cart, setCart] = useState([]);
 
 	useEffect(() => {
 		const storedCart = getCart();
 		let savedCart = [];
+		const keys = Object.keys(storedCart);
+		console.log(keys);
 
-		for (const id in storedCart) {
-			const foundProduct = products.find((product) => {
-				return id === product.id;
+		fetch("http://localhost:4000/productsbykeys", {
+			method: "post",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(keys),
+		})
+			.then((res) => res.json())
+			.then((products) => {
+				for (const id in storedCart) {
+					const foundProduct = products.find((product) => {
+						return id === product._id;
+					});
+
+					if (foundProduct) {
+						foundProduct.quantity = storedCart[id];
+						savedCart.push(foundProduct);
+					}
+				}
+				setCart(savedCart);
 			});
-
-			if (foundProduct) {
-				foundProduct.quantity = storedCart[id];
-				savedCart.push(foundProduct);
-			}
-		}
-		setCart(savedCart);
-	}, [products]);
+	}, []);
 
 	return [cart, setCart];
 };
