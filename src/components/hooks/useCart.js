@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getCart } from "../Localstorage/Localstorage";
+import { useEffect, useState } from 'react';
+import { getCart } from '../Localstorage/Localstorage';
 
 const useCart = () => {
 	const [cart, setCart] = useState([]);
@@ -8,12 +8,11 @@ const useCart = () => {
 		const storedCart = getCart();
 		let savedCart = [];
 		const keys = Object.keys(storedCart);
-		console.log(keys);
 
-		fetch("http://localhost:4000/productsbykeys", {
-			method: "post",
+		fetch('http://localhost:4000/productsbykeys', {
+			method: 'post',
 			headers: {
-				"content-type": "application/json",
+				'content-type': 'application/json',
 			},
 			body: JSON.stringify(keys),
 		})

@@ -6,6 +6,7 @@ import Inventory from './components/Inventory/Inventory';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 import Order from './components/Order/Order';
+import Profile from './components/Profile/Profile';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Shop from './components/Shop/Shop';
 import SignUp from './components/SignUp/SignUp';
@@ -26,6 +27,14 @@ function App() {
 					element={
 						<ProtectedRoute>
 							<CheckOut></CheckOut>
+						</ProtectedRoute>
+					}
+				></Route>
+				<Route
+					path='/profile'
+					element={
+						<ProtectedRoute>
+							<Profile></Profile>
 						</ProtectedRoute>
 					}
 				></Route>

@@ -5,6 +5,7 @@ import {
 } from 'react-firebase-hooks/auth';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import googleLogo from '../../images/google.svg';
+import useToken from '../hooks/useToken';
 import auth from './../../firebase.init';
 import './Login.scss';
 
@@ -21,11 +22,13 @@ const Login = () => {
 	const [googleSignIn, googleUser, googleLoading, googleError] =
 		useSignInWithGoogle(auth);
 
-	if (user || googleUser) navigate(from, { replace: true });
+	const [token] = useToken(user || googleUser);
 
-	const handleFormSubmit = (e) => {
+	if (token) navigate(from, { replace: true });
+
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		signInWithEmailandPassword(email, password);
+		await signInWithEmailandPassword(email, password);
 	};
 	return (
 		<div className='login'>
@@ -58,8 +61,7 @@ const Login = () => {
 				</button>
 			</form>
 			<p>
-				New to Ema-john?{' '}
-				<NavLink to='/signup'>Create New Account</NavLink>
+				New to Ema-john? <NavLink to='/signup'>Create New Account</NavLink>
 			</p>
 			<div className='or'>
 				<p>or</p>

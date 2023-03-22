@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Cart from "../Cart/Cart";
-import { addToDB } from "../Localstorage/Localstorage";
-import Product from "../Product/Product";
-import useCart from "../hooks/useCart";
-import "./Shop.scss";
+import React, { useEffect, useState } from 'react';
+import Cart from '../Cart/Cart';
+import { addToDB } from '../Localstorage/Localstorage';
+import Product from '../Product/Product';
+import useCart from '../hooks/useCart';
+import './Shop.scss';
 
 const Shop = () => {
 	// Fetching Products information
@@ -15,7 +15,7 @@ const Shop = () => {
 	const [totalProducts, setTotalProducts] = useState(0);
 
 	useEffect(() => {
-		fetch("http://localhost:4000/productsCount")
+		fetch('http://localhost:4000/productsCount')
 			.then((res) => res.json())
 			.then((data) => {
 				setTotalProducts(data.count);
@@ -49,9 +49,9 @@ const Shop = () => {
 	};
 
 	return (
-		<div className="shop">
-			<div className="products-container">
-				<div className="products">
+		<div className='shop'>
+			<div className='products-container'>
+				<div className='products'>
 					{products.map((product) => (
 						<Product
 							key={product._id}
@@ -60,40 +60,41 @@ const Shop = () => {
 						></Product>
 					))}
 				</div>
-				<div className="pagination">
-					<div className="page">
+				<div className='pagination'>
+					<div className='page'>
 						{[...Array(pages).keys()].map((page) => {
 							return (
 								<button
+									key={page}
 									onClick={() => setActivePage(page)}
-									className={activePage === page ? "activePage" : ""}
+									className={activePage === page ? 'activePage' : ''}
 								>
 									{page}
 								</button>
 							);
 						})}
 					</div>
-					<div className="size">
-						<label for="size">Products Per page: </label>
+					<div className='size'>
+						<label htmlFor='size'>Products Per page: </label>
 						<select
-							name="size"
+							name='size'
 							onChange={(e) => {
 								setSize(e.target.value);
 								setPages(Math.ceil(totalProducts / e.target.value));
 							}}
 						>
-							<option value="5">5</option>
-							<option value="10" selected>
+							<option value='5'>5</option>
+							<option value='10' defaultValue>
 								10
 							</option>
-							<option value="15">15</option>
-							<option value="20">20</option>
+							<option value='15'>15</option>
+							<option value='20'>20</option>
 						</select>
 					</div>
 				</div>
 			</div>
 
-			<div className="cart-container">
+			<div className='cart-container'>
 				<Cart cart={cart} setCart={setCart}></Cart>
 			</div>
 		</div>
