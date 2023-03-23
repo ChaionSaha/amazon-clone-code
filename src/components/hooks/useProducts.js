@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 
 const useProducts = () => {
 	const [products, setProducts] = useState([]);
+	const { REACT_APP_SERVER_LINK } = process.env;
 
 	useEffect(() => {
-		fetch('http://localhost:4000/products')
+		fetch(`${REACT_APP_SERVER_LINK}products`)
 			.then((res) => res.json())
 			.then((product) => setProducts(product));
 	}, []);

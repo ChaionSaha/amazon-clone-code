@@ -6,18 +6,22 @@ import styles from './Profile.module.scss';
 const Profile = () => {
 	const [user] = useAuthState(auth);
 	console.log(user);
-	const [name, setName] = useState(user.displayName);
+	const [name, setName] = useState(user?.displayName);
+	const [editable, setEditable] = useState(false);
 	return (
 		<div className={styles.profile}>
 			<form>
-				<input
-					type='text'
-					value={name}
-					onChange={(e) => setName(e.target.value)}
-					readOnly={false}
-					disabled={false}
-				/>
+				<div className={styles.inputGroup}>
+					<input
+						type='text'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						readOnly={editable}
+						disabled={editable}
+					/>
+				</div>
 			</form>
+			<img src={user?.photoURL} alt='Profile'></img>
 		</div>
 	);
 };

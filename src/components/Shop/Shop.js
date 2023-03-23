@@ -13,9 +13,10 @@ const Shop = () => {
 	const [activePage, setActivePage] = useState(0);
 	const [size, setSize] = useState(10);
 	const [totalProducts, setTotalProducts] = useState(0);
+	const { REACT_APP_SERVER_LINK } = process.env;
 
 	useEffect(() => {
-		fetch('http://localhost:4000/productsCount')
+		fetch(`${REACT_APP_SERVER_LINK}productsCount`)
 			.then((res) => res.json())
 			.then((data) => {
 				setTotalProducts(data.count);
@@ -24,7 +25,7 @@ const Shop = () => {
 	}, []);
 
 	useEffect(() => {
-		fetch(`http://localhost:4000/products?page=${activePage}&size=${size}`)
+		fetch(`${REACT_APP_SERVER_LINK}products?page=${activePage}&size=${size}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setProducts(data);
@@ -82,11 +83,10 @@ const Shop = () => {
 								setSize(e.target.value);
 								setPages(Math.ceil(totalProducts / e.target.value));
 							}}
+							defaultValue={'10'}
 						>
 							<option value='5'>5</option>
-							<option value='10' defaultValue>
-								10
-							</option>
+							<option value='10'>10</option>
 							<option value='15'>15</option>
 							<option value='20'>20</option>
 						</select>

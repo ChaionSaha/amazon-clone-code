@@ -1,12 +1,12 @@
-import { CreditCardOutline, TrashOutline } from "heroicons-react";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { removeFromDb } from "../Localstorage/Localstorage";
-import OrderedProduct from "../OrderedProduct/OrderedProduct";
-import useCart from "./../hooks/useCart";
-import useCartCalculation from "./../hooks/useCartCalculation";
-import useProducts from "./../hooks/useProducts";
-import "./Order.scss";
+import { CreditCardOutline, TrashOutline } from 'heroicons-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { removeFromDb } from '../Localstorage/Localstorage';
+import OrderedProduct from '../OrderedProduct/OrderedProduct';
+import useCart from './../hooks/useCart';
+import useCartCalculation from './../hooks/useCartCalculation';
+import useProducts from './../hooks/useProducts';
+import './Order.scss';
 
 const Order = () => {
 	const [products, setProducts] = useProducts();
@@ -16,7 +16,7 @@ const Order = () => {
 	const navigate = useNavigate();
 
 	const clearCart = () => {
-		localStorage.removeItem("storedCart");
+		localStorage.removeItem('storedCart');
 		setCart([]);
 	};
 	const removeItem = (id) => {
@@ -24,15 +24,14 @@ const Order = () => {
 		let index = newCart.findIndex((p) => {
 			return p._id === id;
 		});
-		console.log(id);
 		newCart.splice(index, 1);
 		setCart(newCart);
 		removeFromDb(id);
 	};
 
 	return (
-		<div className="review">
-			<div className="items">
+		<div className='review'>
+			<div className='items'>
 				{cart.map((product) => {
 					return (
 						<OrderedProduct
@@ -43,35 +42,35 @@ const Order = () => {
 					);
 				})}
 			</div>
-			<div className="summary">
-				<div className="summary-details">
+			<div className='summary'>
+				<div className='summary-details'>
 					<h1>Order Summary</h1>
-					<p className="total-items">
+					<p className='total-items'>
 						<span>Selected Items: </span>
 						{quantity}
 					</p>
-					<p className="total-price">
+					<p className='total-price'>
 						<span>Total Price: </span>${total}
 					</p>
-					<p className="total-shipping">
+					<p className='total-shipping'>
 						<span>Total Shipping Charge: </span>${shippingCost}
 					</p>
-					<p className="total-tax">
+					<p className='total-tax'>
 						<span>Tax: </span>${tax}
 					</p>
-					<p className="grand-total">
+					<p className='grand-total'>
 						<span>Grand Total: </span>
 						{grandTotal}
 					</p>
 				</div>
-				<div className="btns">
-					<button className="clear" onClick={clearCart}>
+				<div className='btns'>
+					<button className='clear' onClick={clearCart}>
 						Clear Cart
-						<TrashOutline className="btns-icon"></TrashOutline>
+						<TrashOutline className='btns-icon'></TrashOutline>
 					</button>
-					<button className="chk-out" onClick={() => navigate("/checkout")}>
+					<button className='chk-out' onClick={() => navigate('/checkout')}>
 						Proceed Checkout
-						<CreditCardOutline className="btns-icon"></CreditCardOutline>
+						<CreditCardOutline className='btns-icon'></CreditCardOutline>
 					</button>
 				</div>
 			</div>
