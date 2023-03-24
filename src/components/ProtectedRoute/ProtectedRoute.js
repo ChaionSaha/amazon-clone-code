@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 	const location = useLocation();
 	const token = localStorage.getItem('accessToken');
 	if (loading) return <h1>User is loading</h1>;
-	if (!user)
+	if (!token || !user)
 		return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
 	return children;
 };

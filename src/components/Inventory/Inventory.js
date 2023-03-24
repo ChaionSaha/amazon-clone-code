@@ -1,9 +1,11 @@
 import React from 'react';
+import styles from './Inventory.module.scss';
 
 const Inventory = () => {
 	return (
-		<div>
-			<h1>This is inventory section</h1>
+		<div className={styles.inventory}>
+			<h1>Your past orders will appear here</h1>
+			<p>Coming soon</p>
 		</div>
 	);
 };

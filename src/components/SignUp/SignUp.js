@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../hooks/useToken';
 import auth from './../../firebase.init';
 import './SignUp.scss';
 
@@ -10,19 +11,21 @@ const SignUp = () => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [error, setError] = useState('');
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	let from = location.state?.from?.pathname || '/';
 
 	const [createUserWithEmailAndPassword, user, loading, createUserError] =
 		useCreateUserWithEmailAndPassword(auth);
 
-	if (user) navigate('/');
+	const [token] = useToken(user);
+	if (token) navigate(from, { replace: true });
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
 
 		if (password.length < 6 || password.length > 18) {
-			setError(
-				'Your password length must be within 6 to 18 characters long'
-			);
+			setError('Your password length must be within 6 to 18 characters long');
 			return;
 		}
 
@@ -31,7 +34,9 @@ const SignUp = () => {
 			return;
 		}
 
-		createUserWithEmailAndPassword(email, password);
+		const success = await createUserWithEmailAndPassword(email, password);
+		console.log(success);
+
 		setError('');
 	};
 

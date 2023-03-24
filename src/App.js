@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import CheckOut from './components/CheckOut/CheckOut';
 import Header from './components/Header/Header';
@@ -40,6 +42,17 @@ function App() {
 				></Route>
 				<Route path='*' element={<NotFound></NotFound>}></Route>
 			</Routes>
+			<ToastContainer
+				position='top-right'
+				autoClose={5000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				theme='light'
+				pauseOnFocusLoss={false}
+				pauseOnHover={false}
+			/>
 		</div>
 	);
 }

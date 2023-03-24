@@ -4,6 +4,7 @@ import {
 	useSignInWithGoogle,
 } from 'react-firebase-hooks/auth';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import googleLogo from '../../images/google.svg';
 import useToken from '../hooks/useToken';
 import auth from './../../firebase.init';
@@ -28,7 +29,13 @@ const Login = () => {
 
 	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		await signInWithEmailandPassword(email, password);
+		const result = await signInWithEmailandPassword(email, password);
+
+		if (result.user.email) {
+			toast.success('Welcome Back');
+		} else {
+			toast.error('Something Wrong Happend');
+		}
 	};
 	return (
 		<div className='login'>
